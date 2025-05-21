@@ -1,46 +1,107 @@
-# Getting Started with Create React App
+💸 Invoices Payment Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a responsive frontend interface for viewing and paying invoices, built with React + TypeScript and pure CSS.
 
-## Available Scripts
+🚀 Features
 
-In the project directory, you can run:
+Invoice listing with details (ID, vendor, date, due date, amount, priority)
 
-### `npm start`
+Calculation of total amount due
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Selection of an invoice for payment
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Dynamic payment modal with form
 
-### `npm test`
+Input masks and validations for:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Card number (with brand detection and Luhn validation)
 
-### `npm run build`
+Expiration date (MM/YY)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+CVC / CVV (3 or 4 digits)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Success modal shown after a successful payment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+🧩 Technologies Used
 
-### `npm run eject`
+React
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+TypeScript
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pure CSS (no UI frameworks)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+🗂 Project Structure
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+src/
+├── components/
+│   ├── InvoicesPage.tsx
+│   ├── PaymentModal.tsx
+│   ├── PaymentSuccessModal.tsx
+├── styles/
+│   ├── InvoicesPage.css
+│   ├── PaymentModal.css
+│   └── PaymentSuccessModal.css
+├── utils/
+│   └── cardUtils.ts  # Luhn, brand detection, masks, and validations
 
-## Learn More
+🧪 How to Run the Project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Clone the repository:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+git clone https://github.com/youruser/invoices-frontend.git
+cd invoices-frontend
+
+Install dependencies:
+
+npm install
+
+Start the project:
+
+npm run dev
+# or npm start depending on the setup
+
+Open in your browser:
+
+http://localhost:5173
+
+Make sure the backend is running on port 8080 and accepts POST requests to /payments.
+
+📦 Expected API
+
+POST /payments
+
+{
+  "email": "client@example.com",
+  "cardNumber": "1234123412341234",
+  "expirationDate": "12/25",
+  "cvc": "123",
+  "cardName": "Customer Name",
+  "country": "Brazil",
+  "zip": "12345",
+  "invoiceId": "INV-2025-001",
+  "amount": 2850.00
+}
+
+✅ Validations and Masks
+
+Card Number: formatted as 1234 1234 1234 1234 + Luhn validation
+
+Expiration Date: MM/YY with future date validation
+
+CVV: 3 digits (Visa/MasterCard) or 4 digits (Amex)
+
+🖼️ Demo (screenshots or GIFs)
+
+[Coming soon]
+
+🧠 Future Improvements
+
+Add unit tests with Jest
+
+Internationalization (i18n)
+
+Integrate with real payment services (e.g., Stripe)
+
+Real-time validation and loading animations
+
+Made by Lucas Ugiette
